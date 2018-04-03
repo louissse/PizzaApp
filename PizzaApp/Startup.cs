@@ -14,6 +14,7 @@ namespace PizzaApp
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -21,12 +22,25 @@ namespace PizzaApp
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseBrowserLink();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
             }
 
-            app.Run(async (context) =>
+            app.UseStaticFiles(); //Enables the use of static files
+            app.UseSession();
+
+            //Use Mvc
+            app.UseMvc(routes =>
             {
-                await context.Response.WriteAsync("Hello World!");
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
             });
+            app.UseStatusCodePages("text/plain", "HTTP Error - Status Code: {0}");
+
         }
     }
 }
