@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using PizzaApp.Services;
+using PizzaApp.Extensions;
 
 namespace PizzaApp
 {
@@ -15,6 +17,7 @@ namespace PizzaApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddSingleton<IUserService, UserService>();
             services.AddSession();
         }
 
@@ -33,6 +36,7 @@ namespace PizzaApp
             app.UseStaticFiles(); //Enables the use of static files
             app.UseSession();
 
+            app.UseCommunicationMiddleware();
             //Use Mvc
             app.UseMvc(routes =>
             {
