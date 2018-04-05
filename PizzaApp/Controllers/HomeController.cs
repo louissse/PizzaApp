@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PizzaApp.Models;
 using PizzaApp.Services;
@@ -44,6 +45,7 @@ namespace PizzaApp.Controllers
 
             if (user?.IsEmailConfirmed == true)
             {
+                Request.HttpContext.Session.SetString("email", email);
                 return RedirectToAction("Index", "PizzaMenu", new { email = email });
             }
                 

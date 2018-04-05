@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "PizzaMenu";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col">
+        <h2>This will be the pizza menu.</h2>
+        <p>All the pizzas will be done with a component.</p>
+    </div>
+</div>
+
+@section Scripts
+    {
+    <script>
+            $(document).ready(function () {
+                $(".nav li").removeClass("active");
+                $('#PizzaMenu').addClass('active');
+            });
+    </script>
+
+}
