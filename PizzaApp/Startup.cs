@@ -18,6 +18,8 @@ namespace PizzaApp
         {
             services.AddMvc();
             services.AddSingleton<IUserService, UserService>();
+            services.AddSingleton<IPizzaService, PizzaService>();
+
             services.AddSession();
         }
 

@@ -1,0 +1,17 @@
+﻿@model PizzaApp.Models.PizzaModel
+
+    <h3>@Model.Name</h3>
+    <ul>
+        <li>
+            @Model.Price
+        </li>
+        <li>
+
+        @foreach (var topping in Model.Toppings)
+        {
+            @String.Format(topping + ", ");
+        }
+        </li>
+
+    </ul>
+

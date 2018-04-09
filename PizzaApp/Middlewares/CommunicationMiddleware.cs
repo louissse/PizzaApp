@@ -38,6 +38,7 @@ namespace PizzaApp.Middlewares
                 await context.Response.WriteAsync("BadRequest:Email is required");
             } else if ((await _userService.GetUserByEmail(email)).IsEmailConfirmed)
             {
+                context.Request.HttpContext.Session.SetString("email", email);
                 await context.Response.WriteAsync("OK");
             } else
             {
